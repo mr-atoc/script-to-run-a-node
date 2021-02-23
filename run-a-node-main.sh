@@ -4,7 +4,7 @@ sudo apt-get install git
 apt-get install -y npm
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
-echo вводим 2, затем Enter, затем вводим nightly, Enter, Enter, Enter. Understand(y/n)?
+echo вводим 2, затем Enter, затем вводим nightly, Enter, Enter, Enter. Understand y/n?
 read understood
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo Hi. Enter IP address
