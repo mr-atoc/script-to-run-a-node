@@ -1,5 +1,4 @@
 tmux new -s moonbeam
-tmux attach-session -t moonbeam
 sudo apt-get update
 sudo apt-get install \
     apt-transport-https \
