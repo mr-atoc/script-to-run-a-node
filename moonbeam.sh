@@ -15,8 +15,8 @@ sudo docker run hello-world
 echo Hi. What is your node name?
 read nodeName
 echo Continue with $nodeName
-mkdir /var/lib/alphanet-data
-chmod -R 777 /var/lib/alphanet-data
+sudo mkdir /var/lib/alphanet-data
+sudo chmod -R 777 /var/lib/alphanet-data
 docker run --network="host" -v "/var/lib/alphanet-data:/data" \
 purestake/moonbeam:v0.6.1 \
 --base-path=/data \
