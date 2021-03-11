@@ -28,7 +28,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
 source $HOME/.profile
 go version
-git clone https://github.com/Agoric/agoric-sdk -b <GIT-BRANCH>
+git clone https://github.com/Agoric/agoric-sdk -b @agoric/sdk@2.12.1
 cd agoric-sdk
 
 # Install and build Agoric Javascript packages
