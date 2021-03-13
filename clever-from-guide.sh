@@ -1,9 +1,6 @@
 echo Hi. What is your node name?
 read nodeName
 echo Continue with $nodeName
-sudo adduser clover_node
-usermod -aG sudo clover_node
-sudo su clover_node
 
 # обновляем 'базу данных' и скачиваем необходимые зависимости
 
