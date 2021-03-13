@@ -1,7 +1,3 @@
-echo Hi. What is your node name?
-read nodeName
-echo Continue with $nodeName
-
 # обновляем 'базу данных' и скачиваем необходимые зависимости
 
 cd && sudo apt-get update
@@ -18,4 +14,3 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-2020-09-25
 git clone https://github.com/clover-network/clover clover
 cd clover
 cargo build --release
-~/clover/target/release/clover --chain specs/clover-cc1-raw.json --ws-external --rpc-cors all --name "$nodeName"
