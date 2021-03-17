@@ -13,4 +13,3 @@ rustup default nightly-2020-09-25
 rustup target add wasm32-unknown-unknown --toolchain nightly-2020-09-25
 git clone https://github.com/clover-network/clover clover
 cd clover
-cargo build --release
