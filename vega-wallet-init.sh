@@ -28,3 +28,16 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
 source $HOME/.profile
 go version
+git clone https://github.com/vegaprotocol/go-wallet.git go-wallet
+echo Stop to check folder structure
+read test
+(cd go-wallet && make)
+echo Hi. What is your wallet-name?
+read walletName
+echo Continue with key name $walletName
+cd go-wallet
+go-wallet genkey -n "$walletName"
+echo Wallet generated copy output and press enter
+read test1
+go-wallet service init
+go-wallet service run
