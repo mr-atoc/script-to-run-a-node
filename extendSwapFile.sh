@@ -4,7 +4,7 @@ echo Continue with $size in GB
 #!/bin/bash
 grep -q "swapfile" /etc/fstab
 if [[ ! $? -ne 0 ]]; then
-    echo -e '\n\e[42m[Swap] Swap file exist, update.\e[0m\n'
+    echo '\n\e[42m[Swap] Swap file exist, update.\e[0m\n'
     sudo swapoff -a
     sudo dd if=/dev/zero of=/swapfile bs="$sizeG" count=8
     sudo mkswap /swapfile
