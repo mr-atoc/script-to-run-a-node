@@ -90,3 +90,25 @@ docker run -d -it --restart=always \
 --pool 0xAa3337d1f8F72D544f3843B2089d2DA02BBcbD28 \
 --private-key $mmpk \
 --stake $amount
+
+# запуск 'near'
+
+$ docker pull kyve/near:latest && \
+docker stop kyve-near-node 2>/dev/null; \
+docker container rm kyve-near-node 2>/dev/null; \
+docker run -d -it --restart=always \
+--name kyve-near-node kyve/near:latest \
+--pool 0xFAb226300F8B481dF35445c22d73fF5cb9C409eD \
+--private-key $mmpk \
+--stake $amount
+
+# запуск 'aurora'
+
+$ docker pull kyve/evm-snapshots:latest && \
+docker stop kyve-aurora-node 2>/dev/null; \
+docker container rm kyve-aurora-node 2>/dev/null; \
+docker run -d -it --restart=always \
+--name kyve-aurora-node kyve/evm-snapshots:latest \
+--pool 0x5C3ea1634E97F44b592524616F4b158D569DF920 \
+--private-key $mmpk \
+--stake $amount
