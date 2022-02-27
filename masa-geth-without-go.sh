@@ -57,4 +57,4 @@ EOF
 sudo mv $HOME/masad.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable masad
-sudo systemctl restart masad && journalctl -u masad -f -o cat
+sudo systemctl restart masad && journalctl -u masad -f -o cat | grep "new block"
