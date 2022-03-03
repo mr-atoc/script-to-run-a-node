@@ -36,7 +36,7 @@ ExecStart=$(which geth) \
   --datadir $HOME/masa-node-v1.0/data \
   --port 30300 \
   --cache 4096 \
-  --syncmode fast \
+  --syncmode full \
   --verbosity 3 \
   --emitcheckpoints \
   --istanbul.blockperiod 1 \
