@@ -43,4 +43,4 @@ sudo mv $HOME/masad.service /etc/systemd/system
 
 # Start service
 sudo systemctl daemon-reload
-sudo systemctl restart masad && journalctl -u masad -f -o cat | grep "new block"
+sudo systemctl restart masad && journalctl -u masad -f -o cat
