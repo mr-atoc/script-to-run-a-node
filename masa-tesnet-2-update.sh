@@ -1,12 +1,13 @@
-sudo systemctl stop masad
-cd $HOME/masa-node-v1.0 && geth removedb --datadir data
-geth --datadir data init ./network/testnet/genesis.json
+sudo systemctl stop masad && cd $HOME/masa-node-v1.0 && geth removedb --datadir data
+
 git pull
 cd $HOME/masa-node-v1.0/src
 git checkout v1.03
 make all
+
 cd $HOME/masa-node-v1.0/src/build/bin
 sudo cp * /usr/local/bin
+
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 
@@ -16,7 +17,7 @@ echo Continue with $MASA_NODENAME
 
 tee $HOME/masad.service > /dev/null <<EOF
 [Unit]
-Description=MASA
+Description=MASA103
 After=network.target
 [Service]
 Type=simple
@@ -24,18 +25,18 @@ User=$USER
 ExecStart=$(which geth) \
   --identity ${MASA_NODENAME} \
   --datadir $HOME/masa-node-v1.0/data \
-  --port 30303 \
+  --port 30300 \
   --syncmode full \
   --verbosity 3 \
   --emitcheckpoints \
-  --istanbul.blockperiod 1 \
+  --istanbul.blockperiod 10 \
   --mine \
   --miner.threads 1 \
-  --networkid 190250 \
+  --networkid 190260 \
   --http --http.corsdomain "*" --http.vhosts "*" --http.addr 127.0.0.1 --http.port 8545 \
   --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-  --maxpeers 100 \
-  --bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://571be7fe060b183037db29f8fe08e4fed6e87fbb6e7bc24bc34e562adf09e29e06067be14e8b8f0f2581966f3424325e5093daae2f6afde0b5d334c2cd104c79@142.132.135.228:21000,enode://269ecefca0b4cd09bf959c2029b2c2caf76b34289eb6717d735ce4ca49fbafa91de8182dd701171739a8eaa5d043dcae16aee212fe5fadf9ed8fa6a24a56951c@65.108.72.177:21000
+  --maxpeers 50 \
+  --bootnodes enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=4096
@@ -46,6 +47,7 @@ EOF
 
 sudo mv $HOME/masad.service /etc/systemd/system
 
+# Start service
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl start masad && journalctl -u masad -f -o cat
