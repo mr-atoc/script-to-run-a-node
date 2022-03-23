@@ -1,5 +1,8 @@
 sudo systemctl stop masad && cd $HOME/masa-node-v1.0 && geth removedb --datadir data
 
+cp data/geth/nodekey $HOME
+rm -r data
+
 git pull
 cd $HOME/masa-node-v1.0/src
 git checkout v1.03
@@ -10,6 +13,8 @@ sudo cp * /usr/local/bin
 
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
+
+cp $HOME/nodekey data/geth/
 
 echo Hi. What is your node name?
 read MASA_NODENAME
@@ -46,6 +51,11 @@ WantedBy=multi-user.target
 EOF
 
 sudo mv $HOME/masad.service /etc/systemd/system
+
+# Start service
+sudo systemctl daemon-reload
+sudo systemctl enable masad
+sudo systemctl start masad && journalctl -u masad -f -o cat
 
 # Start service
 sudo systemctl daemon-reload
